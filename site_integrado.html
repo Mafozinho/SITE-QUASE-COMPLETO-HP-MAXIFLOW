@@ -1,0 +1,3080 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="H&P Maxiflow - Certificados técnicos e informações da empresa">
+  <title>H&P Maxiflow - Certificados e Empresa</title>
+  <link rel="icon" href="favicon.png">
+  
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Calibri", sans-serif;
+      color: #fff;
+      background: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      scroll-behavior: smooth;
+    }
+
+    /* CABEÇALHO */
+    header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 30px;
+      flex-wrap: wrap;
+      background-color: rgba(0,0,0,0.3);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    header .logos {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    header .logos img {
+      height: 38px;
+      max-width: 140px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    header .logos img:hover {
+      transform: scale(1.05);
+    }
+
+    /* SELETOR DE IDIOMA */
+    .language-switch {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .language-switch img {
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 4px;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .language-switch img:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    }
+
+    /* SISTEMA DE ABAS */
+    .tabs-container {
+      background: rgba(17, 17, 17, 0.9);
+      border-top: 2px solid #ffb400;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .tabs-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 0;
+    }
+
+    .tab-button {
+      background: transparent;
+      border: none;
+      color: #ffb400;
+      font-size: 15px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 15px 30px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tab-button::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #ffb400;
+      transition: width 0.3s;
+      margin: 0 auto;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .tab-button:hover::after,
+    .tab-button.active::after {
+      width: 80%;
+    }
+
+    .tab-button:hover,
+    .tab-button.active {
+      color: #fff;
+      background: rgba(255, 180, 0, 0.1);
+    }
+
+    /* CONTEÚDO DAS ABAS */
+    .tab-content {
+      display: none;
+      flex: 1;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* ESTILOS PARA ABA CERTIFICADOS */
+    .certificados-bg {
+      background: url('mangueira.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: calc(100vh - 120px);
+      position: relative;
+    }
+
+    .certificados-bg::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+
+    .certificados-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+      min-height: calc(100vh - 120px);
+    }
+
+    .container {
+      background: rgba(0,0,0,0.6);
+      padding: 40px 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .container h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .container p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #eee;
+    }
+
+    /* BOTÕES DO CONTAINER */
+    a.button {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      background: #ffb400;
+      color: #000;
+      text-decoration: none;
+      border: 2px solid #ffb400;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: bold;
+      border-radius: 6px;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a.button:hover {
+      background: transparent;
+      color: #ffb400;
+      transform: scale(1.05) translateY(-1px);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    }
+
+    /* ESTILOS PARA ABA QUEM SOMOS */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 600px;
+      background: url("FRENTE.png") no-repeat center bottom;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 10%;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(0,0,0,0.5) 30%, rgba(0,0,0,0) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 600px;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.5s ease, transform 1.5s ease;
+      color: #fff;
+    }
+
+    .hero-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-content h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .faixa-transicao {
+      width: 100%;
+      background: #000;
+      color: #fff;
+      text-align: left;
+      padding: 18px 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .faixa-inner {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .faixa-inner p {
+      margin: 0;
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+      font-weight: 600;
+      line-height: 1.3;
+      max-width: 800px;
+    }
+
+    .parker {
+      color: #ffb400;
+      font-weight: bold;
+    }
+
+    .linha-wrapper {
+      overflow: hidden;
+      display: inline-block;
+      margin-top: 10px;
+      position: relative;
+      width: fit-content;
+    }
+
+    .linha-dourada path {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 800;
+      stroke-dashoffset: 800;
+      animation: desenhar 2s forwards, onda 2s ease-in-out infinite, ciclo 62s infinite;
+    }
+
+    @keyframes desenhar {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes onda {
+      0% { transform: translateY(0); }
+      25% { transform: translateY(-1.5px); }
+      50% { transform: translateY(-3px); }
+      75% { transform: translateY(-1.5px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes ciclo {
+      0%,48%{opacity:1; transform:translateX(0);}
+      50%{opacity:0;transform:translateX(-100%);}
+      52%{opacity:0;transform:translateX(100%);}
+      54%,100%{opacity:1;transform:translateX(0);}
+    }
+
+    .quem-somos {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      padding: 80px 10%;
+      color: #111;
+      background: #f2f2f2;
+      position: relative;
+    }
+
+    .quem-somos.reverse {
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+
+    .quem-somos-text {
+      flex: 1;
+      max-width: 600px;
+    }
+
+    .quem-somos-text h2 {
+      font-family: 'Alegreya Sans SC', sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #000;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: left;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .quem-somos-text h2.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .quem-somos-text .paragrafo {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 15px 0;
+      color: #333;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    /* Alinhamento específico para seções "Quem Somos" e "Valores" */
+    .quem-somos:not(.reverse) .quem-somos-text,
+    .quem-somos.valores .quem-somos-text {
+      text-align: left !important;
+    }
+
+    .quem-somos:not(.reverse) .quem-somos-text .paragrafo,
+    .quem-somos.valores .quem-somos-text .paragrafo {
+      text-align: left !important;
+    }
+
+    /* Regras específicas por ID para "Quem Somos" */
+    #about-p1, #about-p2, #about-p3 {
+      text-align: left !important;
+    }
+
+    /* Regras específicas por ID para "Valores" */
+    #values-p1, #values-p2 {
+      text-align: left !important;
+    }
+
+    /* Alinhamento justificado para seções "Missão" e "Futuro" */
+    .quem-somos.reverse .quem-somos-text {
+      text-align: justify !important;
+    }
+
+    .quem-somos.reverse .quem-somos-text .paragrafo {
+      text-align: justify !important;
+    }
+
+    /* Regras específicas por ID para "Missão" e "Futuro" */
+    #mission-p1, #mission-p2, #future-p1, #future-p2 {
+      text-align: justify !important;
+    }
+
+    .quem-somos-text .paragrafo.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .quem-somos-img {
+      position: relative;
+      flex: 1;
+      max-width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .quem-somos-img.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .quem-somos.reverse .quem-somos-img img {
+      max-height: 100%;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    /* Clientes */
+    .clientes {
+      background: #f9f9f9;
+      padding: 60px 10%;
+      text-align: center;
+    }
+
+    .clientes .subtitulo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #008080;
+      font-family: "Candara", sans-serif;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .clientes .subtitulo.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .clientes .titulo {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 50px;
+      line-height: 1.3;
+      font-family: 'Montserrat', sans-serif;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .clientes .titulo.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .clientes .titulo .texto-cinza {
+      color: #555;
+      font-weight: 400;
+    }
+
+    .clientes .titulo span:last-child {
+      color: #008080;
+    }
+
+    .logos-carousel {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .logos-track {
+      display: flex;
+      gap: 60px;
+    }
+
+    .logos-track img {
+      max-height: 50px;
+      object-fit: contain;
+    }
+
+    /* Portfólio */
+    .portfolio {
+      background: #fff;
+      padding: 80px 10%;
+      text-align: center;
+    }
+
+    .portfolio .subtitulo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #008080;
+      font-family: "Candara", sans-serif;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .portfolio .subtitulo.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .portfolio .titulo {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 30px;
+      line-height: 1.3;
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .portfolio .titulo.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .portfolio .titulo-marcas {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      line-height: 1.3;
+      font-family: 'Montserrat', sans-serif;
+      color: #008080;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .portfolio .titulo-marcas.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+
+    .portfolio .descricao.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .portfolio .descricao {
+      font-size: 1.4rem;
+      font-weight: 500;
+      line-height: 1.4;
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 50px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .portfolio .descricao .texto-cinza {
+      color: #555;
+      font-weight: 400;
+    }
+
+    .portfolio .descricao span:last-child {
+      color: #008080;
+    }
+
+    .portfolio-marcas {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 80px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    .portfolio-marcas.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .portfolio-marcas img {
+      max-height: 60px;
+      max-width: 150px;
+      object-fit: contain;
+      filter: grayscale(0.3);
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .portfolio-marcas img:hover {
+      filter: grayscale(0);
+      transform: scale(1.05);
+    }
+
+    /* SEÇÃO DE CONTATO */
+    .contato-section {
+      padding: 60px 0;
+      background: white;
+      margin: 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .contato-container {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+      border-radius: 16px;
+      padding: 35px 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      max-width: 1200px;
+      width: 92%;
+      min-height: 250px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .contato-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+
+    .contato-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 30px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 10px;
+      min-height: 210px;
+    }
+
+    .contato-text {
+      position: absolute;
+      top: 50%;
+      left: 40px;
+      transform: translateY(-50%);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: left;
+      z-index: 3;
+    }
+
+    .contato-titulo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 0 0 15px 0;
+      line-height: 1.2;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      text-align: left;
+    }
+
+    .contato-subtitulo {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #bbb;
+      line-height: 1.4;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      text-align: left;
+    }
+
+    .contato-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+      justify-content: center;
+      width: auto;
+      flex-shrink: 0;
+      margin-left: auto;
+      margin-right: 20px;
+    }
+
+    .contato-btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      width: 200px;
+      text-align: left;
+    }
+
+    .contato-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .contato-btn:hover::before {
+      left: 100%;
+    }
+
+    .contato-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .contato-icon {
+      width: 16px;
+      height: 16px;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .contato-btn span {
+      flex: 1;
+      color: white;
+    }
+
+    .contato-arrow {
+      width: 14px;
+      height: 14px;
+      color: white;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .contato-btn:hover .contato-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Seção de Unidades */
+    .unidades-section {
+      background: #000;
+      padding: 60px 0;
+      position: relative;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .unidades-logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+    }
+
+    .unidades-logo img {
+      width: 120px;
+      height: auto;
+      opacity: 0.9;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .unidades-logo img:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .unidades-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ecommerce-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #ff6b35;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .ecommerce-btn:hover {
+      background: #e55a2b;
+      transform: translateY(-2px);
+    }
+
+    .ecommerce-icon {
+      font-size: 14px;
+    }
+
+    .unidades-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 0 60px 20px;
+      text-align: center;
+      width: 100%;
+      position: relative;
+    }
+
+    .unidades-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #ffb400 50%, transparent 100%);
+    }
+
+    .unidades-container::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 10%;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(255,180,0,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .unidades-container .unidades-cards {
+      text-align: right;
+      padding-right: 0;
+      margin-right: -200px;
+    }
+
+    .unidades-titulo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff 0%, #e8f5e8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .unidades-titulo::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #ffb400, #ffc107);
+      border-radius: 2px;
+    }
+
+    .unidades-subtitulo {
+      color: #e0e0e0;
+      margin-bottom: 50px;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      opacity: 0.9;
+    }
+
+    .unidades-frase-destaque {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 30px 0 50px -320px;
+      line-height: 1.3;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      text-align: left;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      padding-left: 0;
+      position: relative;
+      left: -80px;
+    }
+
+    .horario-funcionamento {
+      display: flex;
+      justify-content: flex-start;
+      margin: 20px 0 40px 0;
+      padding-left: 0;
+      margin-left: -320px;
+      position: relative;
+      left: -80px;
+    }
+
+    .horario-texto {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 180, 0, 0.3);
+      border-radius: 15px;
+      padding: 15px 25px;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      color: #ffffff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      position: relative;
+      top: 180px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .horario-texto::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ffb400, #ff9800, #ffc107);
+      border-radius: 15px 15px 0 0;
+    }
+
+    .horario-texto:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255, 180, 0, 0.3);
+      border-color: rgba(255, 180, 0, 0.5);
+    }
+
+    .horario-label {
+      font-weight: 700;
+      color: #ffb400;
+      margin-right: 8px;
+    }
+
+    .horario-dias {
+      font-weight: 600;
+      margin-right: 8px;
+    }
+
+    .horario-horas {
+      font-weight: 700;
+      color: #ffb400;
+    }
+
+    .unidades-cards {
+      display: flex;
+      justify-content: flex-end;
+      min-height: 200px;
+      width: 100%;
+    }
+
+    .unidade-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+      width: 600px;
+      margin-left: auto;
+      margin-right: -250px;
+      transform: translateX(100px);
+      padding: 25px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .unidade-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ffb400, #ff9800, #ffc107);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .unidade-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(76,175,80,0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .unidade-card:hover {
+      transform: translateX(100px) translateY(-5px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.2);
+      border-color: rgba(76,175,80,0.3);
+    }
+
+    .unidade-card:hover::after {
+      opacity: 1;
+    }
+
+    .unidade-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      max-width: 600px;
+    }
+
+    .unidade-imagem {
+      width: 160px;
+      height: 120px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 15px;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .unidade-imagem::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(76,175,80,0.2) 0%, transparent 50%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .unidade-imagem:hover::before {
+      opacity: 1;
+    }
+
+    .unidade-imagem:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    .unidade-imagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .unidade-card:hover .unidade-imagem img {
+      transform: scale(1.1);
+    }
+
+    .unidade-info {
+      flex: 1;
+      color: white;
+      text-align: right;
+    }
+
+    .unidade-titulo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 0%, #ffb400 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0 0 15px 0;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .unidade-titulo::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      right: 0;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(90deg, #ffb400, #ffc107);
+      border-radius: 1px;
+    }
+
+    .unidade-endereco,
+    .unidade-cidade,
+    .unidade-telefone {
+      color: #e8e8e8;
+      margin: 6px 0;
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      transition: color 0.3s ease;
+    }
+
+    .unidade-card:hover .unidade-endereco,
+    .unidade-card:hover .unidade-cidade,
+    .unidade-card:hover .unidade-telefone {
+      color: #ffffff;
+    }
+
+    .unidade-maps-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #ffb400 0%, #ff9800 100%);
+      border: none;
+      border-radius: 25px;
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(76,175,80,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .unidade-maps-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .unidade-maps-link:hover::before {
+      left: 100%;
+    }
+
+    .unidade-maps-link:hover {
+      background: linear-gradient(135deg, #ff9800 0%, #ffc107 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255,180,0,0.4);
+      color: #ffffff;
+    }
+
+    .unidade-maps-link:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 15px rgba(76,175,80,0.3);
+    }
+
+    .map-icon {
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .unidade-maps-link:hover .map-icon {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    /* RESPONSIVIDADE SEÇÃO UNIDADES */
+    @media screen and (max-width: 1024px) {
+      .unidades-section {
+        padding: 60px 20px;
+      }
+      
+      .unidades-titulo {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+      
+      .unidades-subtitulo {
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+      }
+      
+      .unidades-frase-destaque {
+        font-size: 2rem;
+        margin: 30px 0;
+      }
+      
+      .horario-funcionamento {
+        position: relative;
+        margin: 40px auto 30px auto;
+        left: 0;
+        transform: none;
+        text-align: center;
+        max-width: 400px;
+      }
+      
+      .horario-texto {
+        top: 100px;
+      }
+      
+      .unidade-card {
+        width: 90%;
+        max-width: 500px;
+        margin: 0 auto;
+        transform: none;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      
+      .unidades-cards {
+        justify-content: center;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .unidades-section {
+        padding: 40px 15px;
+      }
+
+      .unidades-logo {
+        top: 15px;
+        right: 15px;
+      }
+
+      .unidades-logo img {
+        width: 80px;
+      }
+      
+      .unidades-titulo {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      
+      .unidades-subtitulo {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+      
+      .unidades-frase-destaque {
+        font-size: 1.5rem;
+        margin: 25px 0;
+        line-height: 1.3;
+      }
+      
+      .horario-funcionamento {
+        margin: 30px auto 25px auto;
+        max-width: 300px;
+      }
+      
+      .horario-texto {
+        top: 80px;
+        font-size: 0.9rem;
+        padding: 12px 20px;
+      }
+      
+      .unidade-card {
+        width: 95%;
+        max-width: 400px;
+        padding: 20px;
+      }
+      
+      .unidade-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .unidade-imagem {
+        width: 120px;
+        height: 90px;
+        margin: 0 auto;
+      }
+      
+      .unidade-info {
+        text-align: center;
+      }
+      
+      .unidade-titulo {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      
+      .unidade-endereco,
+      .unidade-cidade,
+      .unidade-telefone {
+        font-size: 13px;
+        margin: 4px 0;
+      }
+      
+      .unidade-maps-link {
+        padding: 10px 16px;
+        font-size: 12px;
+        margin-top: 10px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .unidades-section {
+        padding: 30px 10px;
+      }
+
+      .unidades-logo {
+        top: 10px;
+        right: 10px;
+      }
+
+      .unidades-logo img {
+        width: 60px;
+      }
+      
+      .unidades-titulo {
+        font-size: 1.8rem;
+      }
+      
+      .unidades-subtitulo {
+        font-size: 0.9rem;
+      }
+      
+      .unidades-frase-destaque {
+        font-size: 1.3rem;
+        margin: 20px 0;
+      }
+      
+      .horario-funcionamento {
+        margin: 25px auto 20px auto;
+        max-width: 280px;
+      }
+      
+      .horario-texto {
+        top: 60px;
+        font-size: 0.8rem;
+        padding: 10px 15px;
+      }
+      
+      .unidade-card {
+        width: 98%;
+        padding: 15px;
+      }
+      
+      .unidade-imagem {
+        width: 100px;
+        height: 75px;
+      }
+      
+      .unidade-titulo {
+        font-size: 16px;
+      }
+      
+      .unidade-endereco,
+      .unidade-cidade,
+      .unidade-telefone {
+        font-size: 12px;
+      }
+      
+      .unidade-maps-link {
+        padding: 8px 14px;
+        font-size: 11px;
+      }
+    }
+
+
+
+    /* RESPONSIVIDADE */
+    @media screen and (max-width: 1024px) {
+      .hero {
+        padding: 0 5%;
+        justify-content: center;
+        align-items: center;
+      }
+      .hero-content {
+        text-align: center;
+      }
+      
+      .unidades-container {
+        gap: 30px;
+      }
+      
+      .unidade-imagem {
+        width: 140px;
+        height: 100px;
+      }
+      
+      .unidade-titulo {
+        font-size: 16px;
+      }
+      
+      .unidade-endereco,
+      .unidade-cidade,
+      .unidade-telefone {
+        font-size: 13px;
+      }
+      
+      .unidade-maps-link {
+        font-size: 12px;
+        padding: 6px 12px;
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .tabs-nav {
+        flex-wrap: wrap;
+        gap: 0;
+      }
+
+      .tab-button {
+        padding: 12px 20px;
+      }
+      
+      .unidades-container {
+        flex-direction: column;
+        gap: 40px;
+      }
+      
+      .unidade-card {
+        width: 100%;
+      }
+      
+      .unidade-imagem {
+        width: 120px;
+        height: 90px;
+      }
+      
+      .unidade-titulo {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+      
+      .unidade-endereco,
+      .unidade-cidade,
+      .unidade-telefone {
+        font-size: 12px;
+        margin: 3px 0;
+      }
+      
+      .ecommerce-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+      }
+      
+      .unidade-maps-link {
+        font-size: 11px;
+        padding: 6px 10px;
+        margin-top: 8px;
+        border-radius: 6px;
+      }
+        font-size: 14px;
+      }
+
+      .container {
+        padding: 30px 15px;
+      }
+
+      .container h2 {
+        font-size: 22px;
+      }
+
+      .container p {
+        font-size: 16px;
+      }
+
+      a.button {
+        font-size: 15px;
+        padding: 10px 16px;
+      }
+
+      .faixa-transicao {
+        padding: 14px 6%;
+      }
+      
+      .unidades-section {
+        padding: 40px 20px;
+      }
+
+      .unidades-titulo {
+        font-size: 2rem;
+      }
+
+      .unidades-cards {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .unidade-card {
+        flex-direction: column;
+        text-align: center;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      
+      .unidade-imagem {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+      }
+      
+      .unidade-info {
+        padding: 20px;
+      }
+      
+      .unidade-titulo {
+        font-size: 1.4rem;
+      }
+
+      .quem-somos {
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+      }
+
+      .quem-somos-img {
+        max-width: 100%;
+      }
+
+      .contato-section {
+        padding: 40px 0;
+      }
+      
+      .contato-container {
+        padding: 30px;
+        width: 98%;
+        max-width: 1000px;
+      }
+      
+      .contato-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        align-items: center;
+      }
+      
+
+
+      .contato-titulo {
+        font-size: 1.5rem;
+      }
+      
+      .contato-buttons {
+        align-items: flex-end !important;
+      }
+
+      .unidades-section {
+        padding: 40px 20px;
+      }
+
+      .unidades-header {
+        padding: 15px;
+      }
+
+      .unidades-titulo {
+        font-size: 1.1rem;
+      }
+
+      .unidades-subtitulo {
+        font-size: 0.8rem;
+      }
+
+      .unidades-container {
+        padding: 15px;
+      }
+
+      .unidade-info {
+        padding: 15px;
+      }
+
+      .unidade-titulo {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+      }
+
+      .unidade-endereco p {
+        font-size: 0.85rem;
+      }
+
+
+
+      .unidade-imagem {
+        height: 150px;
+      }
+
+      .unidades-container {
+        padding: 0 4%;
+        max-width: 500px;
+      }
+
+      .unidade-card {
+        max-width: none;
+        padding: 25px;
+        gap: 20px;
+      }
+
+      .unidade-titulo {
+        font-size: 1.2rem;
+      }
+
+      .unidade-endereco p {
+        font-size: 0.9rem;
+      }
+
+      .unidade-maps-link {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+      }
+
+      .unidade-horario {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+        margin-top: 10px;
+      }
+
+      .unidade-imagem {
+        width: 100px;
+        height: 75px;
+      }
+
+      .quem-somos.reverse .quem-somos-img img {
+        transform: translateX(0);
+      }
+
+      .logos-track img {
+        max-height: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header .logos img {
+        height: 40px;
+      }
+
+      .tab-button {
+        font-size: 13px;
+        padding: 10px 15px;
+      }
+
+      .container h2 {
+        font-size: 20px;
+      }
+
+      .container p {
+        font-size: 14px;
+      }
+
+      a.button {
+        width: 100%;
+      }
+
+      .contato-section {
+        padding: 30px 0;
+      }
+      
+      .contato-container {
+        padding: 25px;
+        border-radius: 12px;
+        width: 98%;
+        max-width: 650px;
+      }
+
+      .contato-titulo {
+        font-size: 1.3rem;
+      }
+
+      .contato-subtitulo {
+        font-size: 0.8rem;
+      }
+
+      .contato-btn {
+        padding: 10px 14px;
+        font-size: 0.75rem;
+        min-width: 150px;
+      }
+      
+      .contato-buttons {
+        align-items: flex-end !important;
+      }
+      
+      .contato-content {
+        gap: 15px;
+        text-align: center;
+        align-items: center;
+      }
+      
+
+
+      .unidades-section {
+        padding: 30px 15px;
+      }
+
+      .unidades-titulo {
+        font-size: 1.8rem;
+      }
+
+      .unidades-cards {
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .unidades-header {
+        padding: 12px;
+      }
+
+      .unidades-titulo {
+        font-size: 1rem;
+      }
+
+      .unidades-subtitulo {
+        font-size: 0.75rem;
+      }
+
+      .unidades-container {
+        padding: 12px;
+      }
+
+      .unidade-info {
+        padding: 12px;
+      }
+
+      .unidade-titulo {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+
+      .unidade-endereco p {
+        font-size: 0.8rem;
+      }
+
+      .unidade-maps-link {
+        font-size: 0.8rem;
+        padding: 6px 8px;
+        margin-top: 8px;
+      }
+
+      .unidade-horario {
+        font-size: 0.8rem;
+        padding: 6px 8px;
+        margin-top: 8px;
+      }
+
+
+
+      .unidade-imagem {
+        height: 120px;
+        align-self: center;
+      }
+    }
+
+    /* REMOVE OUTLINE E SOMBRA NO FOCUS/ACTIVE */
+    a.button:focus,
+    a.button:active,
+    .tab-button:focus,
+    .tab-button:active,
+    .language-switch img:focus,
+    .language-switch img:active {
+      outline: none;
+      box-shadow: none;
+    }
+
+    /* MOVE ELEMENTOS PARA A ESQUERDA - QUEM SOMOS E VALORES */
+    section.quem-somos:not(.reverse) .quem-somos-text,
+    section.quem-somos.valores .quem-somos-text {
+      text-align: left !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 20px !important;
+      max-width: 600px !important;
+      width: auto !important;
+      box-sizing: border-box !important;
+      line-height: 1.6 !important;
+      list-style: none !important;
+      list-style-type: none !important;
+    }
+
+    section.quem-somos:not(.reverse) .quem-somos-text h2,
+    section.quem-somos.valores .quem-somos-text h2 {
+      text-align: left !important;
+      margin-left: 0 !important;
+    }
+
+    section.quem-somos:not(.reverse) .quem-somos-text p,
+    section.quem-somos.valores .quem-somos-text p {
+      text-align: left !important;
+      margin-left: 0 !important;
+      line-height: 1.6 !important;
+      list-style: none !important;
+      list-style-type: none !important;
+      display: block !important;
+    }
+
+    /* REMOVER QUALQUER MARCADOR OU LISTA */
+    section.quem-somos:not(.reverse) *,
+    section.quem-somos.valores * {
+      list-style: none !important;
+      list-style-type: none !important;
+    }
+
+    section.quem-somos:not(.reverse) *::before,
+    section.quem-somos.valores *::before {
+      content: none !important;
+      display: none !important;
+    }
+
+    section.quem-somos:not(.reverse) *::after,
+    section.quem-somos.valores *::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    /* LAYOUT LADO A LADO PARA QUEM SOMOS E VALORES COM IMAGENS */
+    section.quem-somos:not(.reverse) {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: 40px !important;
+      padding: 60px 5% !important;
+      width: 100% !important;
+      margin: 0 !important;
+    }
+
+    section.quem-somos.valores {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: 40px !important;
+      padding: 60px 5% !important;
+      width: 100% !important;
+      margin: 0 !important;
+    }
+
+    section.quem-somos:not(.reverse) .quem-somos-text {
+      flex: 1 !important;
+      order: 1 !important;
+    }
+
+    section.quem-somos.valores .quem-somos-text {
+      flex: 1 !important;
+      order: 1 !important;
+    }
+
+    section.quem-somos:not(.reverse) .quem-somos-img,
+    section.quem-somos.valores .quem-somos-img {
+      flex: 0 0 auto !important;
+      max-width: 600px !important;
+      min-width: 450px !important;
+      order: 2 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    section.quem-somos:not(.reverse) .quem-somos-img img,
+    section.quem-somos.valores .quem-somos-img img {
+      width: 100% !important;
+      height: auto !important;
+      border-radius: 8px !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
+    @media (max-width: 768px) {
+      section.quem-somos:not(.reverse),
+      section.quem-somos.valores {
+        flex-direction: column !important;
+        gap: 20px !important;
+        padding: 40px 20px !important;
+      }
+
+      section.quem-somos:not(.reverse) .quem-somos-img,
+      section.quem-somos.valores .quem-somos-img {
+        max-width: 100% !important;
+        min-width: auto !important;
+        order: 2 !important;
+      }
+
+      section.quem-somos:not(.reverse) .quem-somos-text,
+      section.quem-somos.valores .quem-somos-text {
+        order: 1 !important;
+      }
+    }
+
+    /* MANTÉM CENTRALIZADO PARA MISSÃO E FUTURO */
+    section.quem-somos.reverse .quem-somos-text {
+      text-align: justify !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    section.quem-somos.reverse .quem-somos-text p {
+      text-align: justify !important;
+    }
+
+    /* ESTILOS PARA SEÇÃO DE CONTATOS */
+    .contatos-container {
+      padding: 60px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      min-height: calc(100vh - 120px);
+      position: relative;
+    }
+
+    .contatos-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #FFB400, #FF8C00, #FFB400);
+      border-radius: 2px;
+    }
+
+    .contatos-titulo {
+      text-align: center;
+      font-size: 3rem;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+    }
+
+    .contatos-titulo::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #FFB400, #FF8C00);
+      border-radius: 2px;
+    }
+
+    .contatos-subtitulo {
+      text-align: center;
+      font-size: 1.3rem;
+      color: #5a6c7d;
+      margin-bottom: 50px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .departamentos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .departamento-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.04);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255, 180, 0, 0.1);
+      position: relative;
+    }
+
+    .departamento-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #FFB400, transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .departamento-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08);
+    }
+
+    .departamento-card:hover::before {
+      opacity: 1;
+    }
+
+    .departamento-header {
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+      color: white;
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .departamento-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 180, 0, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .departamento-card:hover .departamento-header::before {
+      left: 100%;
+    }
+
+    .departamento-titulo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .departamento-icon {
+      font-size: 2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .contatos-lista {
+      padding: 25px;
+      background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    }
+
+    .contato-item {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      margin-bottom: 5px;
+    }
+
+    .contato-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .contato-item:hover {
+      background: rgba(255, 180, 0, 0.03);
+      padding-left: 10px;
+      transform: translateX(5px);
+    }
+
+    .contato-nome {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin: 0 0 8px 0;
+      letter-spacing: 0.5px;
+    }
+
+    .contato-cargo {
+      font-size: 1rem;
+      color: #7f8c8d;
+      margin: 0 0 15px 0;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    .contato-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contato-telefone,
+    .contato-email {
+      font-size: 0.95rem;
+      color: #34495e;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid transparent;
+      font-weight: 500;
+    }
+
+    .contato-telefone:hover,
+    .contato-email:hover {
+      background: linear-gradient(135deg, #FFB400, #FF8C00);
+      color: white;
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(255, 180, 0, 0.3);
+      border-color: rgba(255, 180, 0, 0.2);
+    }
+
+    .contato-telefone::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2334495e' viewBox='0 0 24 24'%3E%3Cpath d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .contato-email::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2334495e' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .contato-telefone:hover::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E");
+      transform: scale(1.1);
+    }
+
+    .contato-email:hover::before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+      transform: scale(1.1);
+    }
+
+    /* RESPONSIVIDADE PARA CONTATOS */
+    @media (max-width: 768px) {
+      .contatos-container {
+        padding: 20px 15px;
+      }
+
+      .contatos-titulo {
+        font-size: 2rem;
+      }
+
+      .contatos-subtitulo {
+        font-size: 1rem;
+      }
+
+      .departamentos-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .departamento-header {
+        padding: 15px;
+      }
+
+      .departamento-titulo {
+        font-size: 1.2rem;
+      }
+
+      .departamento-icon {
+        font-size: 1.5rem;
+      }
+
+      .contatos-lista {
+        padding: 15px;
+      }
+
+      .contato-item {
+        padding: 12px 0;
+      }
+
+      .contato-nome {
+        font-size: 1rem;
+      }
+
+      .contato-cargo {
+        font-size: 0.9rem;
+      }
+
+      .contato-telefone,
+      .contato-email {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contatos-container {
+        padding: 15px 10px;
+      }
+
+      .contatos-titulo {
+        font-size: 1.8rem;
+      }
+
+      .departamentos-grid {
+        gap: 15px;
+      }
+
+      .departamento-header {
+        padding: 12px;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+
+      .departamento-titulo {
+        font-size: 1.1rem;
+      }
+
+      .contatos-lista {
+        padding: 12px;
+      }
+
+      .contato-info {
+        gap: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <div class="logos">
+      <img src="LOGO.png" alt="Logo HP Maxiflow">
+      <img src="parkerstore.png" alt="Logo Parker Store">
+    </div>
+    <div class="language-switch">
+      <a href="#" aria-label="Português"><img src="br.png" alt=""></a>
+      <a href="#" aria-label="English"><img src="us.png" alt=""></a>
+    </div>
+  </header>
+
+  <!-- Sistema de Abas -->
+  <div class="tabs-container">
+    <div class="tabs-nav">
+      <button class="tab-button active" data-tab="certificados" id="tab-home">HOME</button>
+      <button class="tab-button" data-tab="quem-somos" id="tab-about">Quem Somos</button>
+      <button class="tab-button" data-tab="produtos" id="tab-products">Produtos</button>
+      <button class="tab-button" data-tab="servicos" id="tab-services">Serviços</button>
+      <button class="tab-button" data-tab="contatos" id="tab-contacts">Contatos</button>
+    </div>
+  </div>
+
+  <!-- Conteúdo da Aba Certificados -->
+  <div id="certificados" class="tab-content active">
+    <div class="certificados-bg">
+      <div class="certificados-content">
+        <div class="container">
+          <h2 id="cert-title">Certificado Técnico - 471TC-4</h2>
+          <p id="cert-subtitle">Escolha uma das opções abaixo:</p>
+
+          <a href="Certificado de teste hidrostático Subsea Drilling PO 3049 TAG 3769 471TC 4  400MM .pdf" target="_blank" class="button" id="btn-certificate">Ver Certificado</a>
+          <a href="https://ph.parker.com/br/pt/product/hydraulic-industry-standard-hose-5800-2500-psi-471-hose/471tc-4" target="_blank" class="button" id="btn-datasheet">Ficha Técnica Parker</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conteúdo da Aba Quem Somos -->
+  <div id="quem-somos" class="tab-content">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 id="hero-title">Conquistamos a confiança do mercado</h1>
+        <p id="hero-subtitle1">A H&P é referência no mercado de soluções hidráulicas, oferecendo qualidade, inovação e credibilidade.</p>
+        <p id="hero-subtitle2">Com experiência consolidada, seguimos construindo confiança todos os dias.</p>
+      </div>
+    </section>
+
+    <!-- Faixa de transição -->
+    <section class="faixa-transicao" aria-label="Faixa de Transição">
+      <div class="faixa-inner">
+        <p id="transition-text">
+          <span id="transition-years">26 anos focados em</span> <strong class="parker" id="transition-solutions">SOLUÇÕES</strong> <span id="transition-and">e</span> <strong class="parker" id="transition-services">SERVIÇOS INOVADORES</strong> <span id="transition-market">para o mercado de automação e controle de fluídos.</span>
+        </p>
+        <div class="linha-wrapper">
+          <svg class="linha-dourada" width="100%" height="10" viewBox="0 0 400 10" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 5 Q25 0 50 5 T100 5 T150 5 T200 5 T250 5 T300 5 T350 5 T400 5" stroke="#ffb400" stroke-width="3" fill="transparent"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quem Somos -->
+    <section class="quem-somos">
+      <div class="quem-somos-text" style="text-align: left !important;">
+        <h2 id="about-title">Quem Somos</h2>
+        <p class="paragrafo" id="about-p1" style="text-align: left !important;">A H&P Maxiflow está atuando no setor de serviços e material on e off-shore desde 1999. Com uma equipe formada por pessoas altamente capacitadas, incluindo um setor de engenharia, a excelência na avaliação, implementação e manutenção dos serviços que prestamos é garantida.</p>
+        <p class="paragrafo" id="about-p2" style="text-align: left !important;">Com destaque na linha de condução de fluidos, englobando mangueiras de alta, média e baixa pressão, inclusive termoplásticas, adaptadores de alta e baixa pressão em inox e aço carbono, também atuamos com serviços e comercialização de materiais hidráulicos, pneumáticos, instrumentações e filtros industriais. Sempre contando com o conhecimento avançado de nossa equipe, assim como a qualidade dos nossos produtos.</p>
+        <p class="paragrafo" id="about-p3" style="text-align: left !important;">Além da área de vendas de peças, também possuímos serviços de teste hidrostático em mangueiras, inclusive com registrador gráfico. Também efetuamos reparos em bombas hidráulicas e motores, reparo em cilindros hidráulicos e pneumáticos, montagem de unidades hidráulicas, sempre focados na eficiência do objetivo, embasados em projetos da nossa equipe de técnica e de engenheiros com mais de 25 anos de mercado.</p>
+      </div>
+      <div class="quem-somos-img">
+        <img src="quem somos.png" alt="Quem Somos - H&P Maxiflow">
+      </div>
+    </section>
+
+    <!-- Missão e Futuro -->
+    <section class="quem-somos reverse">
+      <div class="quem-somos-text">
+        <h2 id="mission-title">Missão</h2>
+        <p class="paragrafo" id="mission-p1">
+          Oferecer produtos e serviços de excelência, garantindo mangueiras e conexões de alta durabilidade que aumentem a eficiência operacional e reduzam o risco de vazamentos. Nossa prioridade é a segurança e a confiabilidade para cada cliente.
+        </p>
+        <p class="paragrafo" id="mission-p2">
+          Buscamos constantemente soluções inovadoras e sustentáveis, mantendo a integridade ambiental e fortalecendo nossa posição como referência no setor de óleo e gás.
+        </p>
+
+        <h2 style="margin-top: 40px;" id="future-title">Futuro</h2>
+        <p class="paragrafo" id="future-p1">
+          Olhando para o futuro, continuamos firmes em nosso compromisso de oferecer as melhores soluções para nossos clientes. Planejamos expandir nossa presença no mercado, fortalecendo parcerias estratégicas e explorando novas oportunidades de negócios.
+        </p>
+        <p class="paragrafo" id="future-p2">
+          Investimos em pesquisa e desenvolvimento para aprimorar nossos produtos e serviços, garantindo que possamos atender às demandas em constante evolução do mercado.
+        </p>
+      </div>
+      <div class="quem-somos-img">
+        <img src="estoque.png" alt="Imagem Missão e Futuro">
+      </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="quem-somos valores">
+      <div class="quem-somos-text" style="text-align: left !important;">
+        <h2 id="values-title">Valores</h2>
+        <p class="paragrafo" id="values-p1" style="text-align: left !important;">
+          Integridade, inovação, compromisso com a qualidade, segurança e sustentabilidade. Estes são os princípios que guiam cada ação da H&P Maxiflow.
+        </p>
+        <p class="paragrafo" id="values-p2" style="text-align: left !important;">
+          Priorizamos a confiança e a transparência em todos os processos, garantindo excelência em produtos e serviços para nossos clientes.
+        </p>
+      </div>
+      <div class="quem-somos-img">
+        <img src="valores.png" alt="Valores - H&P Maxiflow">
+      </div>
+    </section>
+
+    <!-- Clientes -->
+    <section class="clientes">
+      <h3 class="subtitulo" id="clients-subtitle">NOSSOS CLIENTES</h3>
+      <h2 class="titulo">
+        <span class="texto-cinza" id="clients-title1">Parceiros que confiam em</span> <span id="clients-title2">nossas soluções.</span>
+      </h2>
+      <div class="logos-carousel">
+        <div class="logos-track">
+          <img src="cliente1.png" alt="Cliente 1">
+          <img src="cliente2.png" alt="Cliente 2">
+          <img src="cliente3.png" alt="Cliente 3">
+          <img src="cliente4.png" alt="Cliente 4">
+          <img src="cliente5.png" alt="Cliente 5">
+          <img src="cliente6.png" alt="Cliente 6">
+          <img src="cliente7.png" alt="Cliente 7">
+          <img src="cliente8.png" alt="Cliente 8">
+          <img src="cliente9.png" alt="Cliente 9">
+          <img src="cliente10.png" alt="Cliente 10">
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfólio -->
+    <section class="portfolio">
+      <h2 class="titulo-marcas" id="portfolio-title">Nossas marcas</h2>
+      <p class="descricao" id="portfolio-description">
+        <span class="texto-cinza" id="portfolio-description1">Trabalhamos em parceria com essas marcas renomadas para oferecer</span> <span id="portfolio-description2">soluções de excelência e impulsionar a inovação no mercado.</span>
+      </p>
+      <div class="portfolio-marcas">
+        <img src="fornecedor1.png" alt="Fornecedor 1">
+        <img src="fornecedor2.png" alt="Fornecedor 2">
+        <img src="fornecedor3.png" alt="Fornecedor 3">
+        <img src="fornecedor4.png" alt="Fornecedor 4">
+      </div>
+    </section>
+
+    <!-- Seção de Contato -->
+    <section class="contato-section">
+      <div class="contato-container">
+        <div class="contato-content">
+          <div class="contato-text">
+            <h2 class="contato-titulo" id="contact-title">Fique Conectado</h2>
+            <p class="contato-subtitulo" id="contact-subtitle">É uma grande alegria conversar com você</p>
+          </div>
+          <div class="contato-buttons">
+            <a href="mailto:contato@hpmaxiflow.com" class="contato-btn" id="contact-email">
+              <svg class="contato-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span id="contact-email-text">Enviar mensagem</span>
+              <svg class="contato-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            
+            <a href="tel:+5511999999999" class="contato-btn" id="contact-phone">
+              <svg class="contato-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 16.92V19.92C22 20.52 21.52 21 20.92 21C9.4 21 0 11.6 0 0.08C0 -0.52 0.48 -1 1.08 -1H4.08C4.68 -1 5.16 -0.52 5.16 0.08C5.16 2.08 5.56 4.04 6.32 5.84C6.48 6.24 6.36 6.68 6.04 7L4.2 8.84C5.6 11.6 8.4 14.4 11.16 15.8L13 13.96C13.32 13.64 13.76 13.52 14.16 13.68C15.96 14.44 17.92 14.84 19.92 14.84C20.52 14.84 21 15.32 21 15.92V18.92H22Z" fill="currentColor"/>
+              </svg>
+              <span id="contact-phone-text">Ligar para o Telefone</span>
+              <svg class="contato-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            
+            <a href="https://linkedin.com/company/hpmaxiflow" target="_blank" class="contato-btn" id="contact-linkedin">
+              <svg class="contato-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8V8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span id="contact-linkedin-text">Acesse o LinkedIn</span>
+              <svg class="contato-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            
+            <a href="https://instagram.com/hpmaxiflow" target="_blank" class="contato-btn" id="contact-instagram">
+              <svg class="contato-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                <path d="M16 11.37C16.1234 12.2022 15.9813 13.0522 15.5938 13.799C15.2063 14.5458 14.5931 15.1514 13.8416 15.5297C13.0901 15.9079 12.2384 16.0396 11.4078 15.9059C10.5771 15.7723 9.80976 15.3801 9.21484 14.7852C8.61992 14.1902 8.22773 13.4229 8.09407 12.5922C7.9604 11.7615 8.09207 10.9099 8.47033 10.1584C8.84859 9.40685 9.45419 8.79374 10.201 8.40624C10.9478 8.01874 11.7978 7.87658 12.63 8C13.4789 8.12588 14.2649 8.52146 14.8717 9.1283C15.4785 9.73515 15.8741 10.5211 16 11.37Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M17.5 6.5H17.51" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span id="contact-instagram-text">Acesse o Instagram</span>
+              <svg class="contato-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            
+            <a href="https://wa.me/5511999999999" target="_blank" class="contato-btn" id="contact-whatsapp">
+              <svg class="contato-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382C17.367 14.382 17.261 14.382 17.156 14.382C16.909 14.382 16.663 14.382 16.416 14.382C16.024 14.382 15.632 14.382 15.24 14.382C14.848 14.382 14.456 14.382 14.064 14.382C13.672 14.382 13.28 14.382 12.888 14.382C12.496 14.382 12.104 14.382 11.712 14.382C11.32 14.382 10.928 14.382 10.536 14.382C10.144 14.382 9.752 14.382 9.36 14.382C8.968 14.382 8.576 14.382 8.184 14.382C7.792 14.382 7.4 14.382 7.008 14.382C6.616 14.382 6.224 14.382 5.832 14.382C5.44 14.382 5.048 14.382 4.656 14.382C4.264 14.382 3.872 14.382 3.48 14.382C3.088 14.382 2.696 14.382 2.304 14.382C1.912 14.382 1.52 14.382 1.128 14.382C0.736 14.382 0.344 14.382 -0.048 14.382" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 15C21 16.1 20.1 17 19 17H7L3 21V5C3 3.9 3.9 3 5 3H19C20.1 3 21 3.9 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span id="contact-whatsapp-text">Acesse o Whatsapp</span>
+              <svg class="contato-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+  </div>
+
+  <!-- Conteúdo da Aba Produtos -->
+  <div id="produtos" class="tab-content">
+    <!-- Conteúdo vazio -->
+  </div>
+
+  <!-- Conteúdo da Aba Serviços -->
+  <div id="servicos" class="tab-content">
+    <!-- Conteúdo vazio -->
+  </div>
+
+  <!-- Conteúdo da Aba Contatos -->
+  <div id="contatos" class="tab-content">
+      <div class="contatos-container">
+        <h2 class="contatos-titulo" id="contacts-title">Contatos</h2>
+        <p class="contatos-subtitulo" id="contacts-subtitle">Entre em contato com o departamento desejado</p>
+      
+      <div class="departamentos-grid">
+        
+        <!-- Departamento Comercial -->
+          <div class="departamento-card">
+            <div class="departamento-header">
+              <h3 class="departamento-titulo" id="dept-comercial">Comercial</h3>
+            </div>
+          <div class="contatos-lista">
+            <div class="contato-item">
+               <h4 class="contato-nome">Juliana Riscado</h4>
+               <p class="contato-cargo" id="cargo-coordenadora-comercial">Coordenadora Comercial</p>
+               <div class="contato-info">
+                 <a href="tel:+5521993329658" class="contato-telefone">+55 21 99332-9658</a>
+                 <a href="mailto:julianariscado@hpmacae.com.br" class="contato-email">julianariscado@hpmacae.com.br</a>
+               </div>
+             </div>
+            <div class="contato-item">
+               <h4 class="contato-nome">Sérgio Monsores</h4>
+               <p class="contato-cargo" id="cargo-vendedor-tecnico">Vendedor Técnico</p>
+               <div class="contato-info">
+                 <a href="tel:+5522997396806" class="contato-telefone">+55 22 99739-6806</a>
+                 <a href="mailto:sergiomonsores@hpmacae.com.br" class="contato-email">sergiomonsores@hpmacae.com.br</a>
+               </div>
+             </div>
+            <div class="contato-item">
+               <h4 class="contato-nome">Luciana Cardoso</h4>
+               <p class="contato-cargo" id="cargo-vendedora">Vendedora</p>
+               <div class="contato-info">
+                 <a href="tel:+5522998096565" class="contato-telefone">+55 22 99809-6565</a>
+                 <a href="mailto:lucianacardoso@hpmacae.com.br" class="contato-email">lucianacardoso@hpmacae.com.br</a>
+               </div>
+             </div>
+             <div class="contato-item">
+               <h4 class="contato-nome">Everaldo Fonseca</h4>
+               <p class="contato-cargo" id="cargo-vendedor-tecnico-2">Vendedor Técnico</p>
+               <div class="contato-info">
+                 <a href="tel:+5522997136138" class="contato-telefone">+55 22 99713-6138</a>
+                 <a href="mailto:everaldofonseca@hpmacae.com.br" class="contato-email">everaldofonseca@hpmacae.com.br</a>
+               </div>
+             </div>
+          </div>
+        </div>
+
+        <!-- Departamento Operacional -->
+          <div class="departamento-card">
+            <div class="departamento-header">
+              <h3 class="departamento-titulo" id="dept-operacional">Operacional</h3>
+            </div>
+          <div class="contatos-lista">
+            <div class="contato-item">
+               <h4 class="contato-nome">Fábio Henrique</h4>
+               <p class="contato-cargo" id="cargo-tecnico-instrumentacao">Técnico em Instrumentação</p>
+               <div class="contato-info">
+                 <a href="tel:+5522997642208" class="contato-telefone">+55 22 99764-2208</a>
+                 <a href="mailto:fabioprazeres@hpmacae.com.br" class="contato-email">fabioprazeres@hpmacae.com.br</a>
+               </div>
+             </div>
+             <div class="contato-item">
+               <h4 class="contato-nome">João Vitor Martins</h4>
+               <p class="contato-cargo" id="cargo-tecnico-manutencao">Técnico em Manutenção</p>
+               <div class="contato-info">
+                 <a href="tel:+552227725530" class="contato-telefone">(22) 2772-5530</a>
+               </div>
+             </div>
+             <div class="contato-item">
+               <h4 class="contato-nome">Kevin Flores</h4>
+               <p class="contato-cargo" id="cargo-assistente-tecnico">Assistente Técnico em Manutenção</p>
+               <div class="contato-info">
+                 <a href="tel:+552227725530" class="contato-telefone">(22) 2772-5530</a>
+                 <a href="mailto:kevinflores@hpmace.com.br" class="contato-email">kevinflores@hpmace.com.br</a>
+               </div>
+             </div>
+             <div class="contato-item">
+               <h4 class="contato-nome">João Vitor M</h4>
+               <p class="contato-cargo" id="cargo-auxiliar-tecnico">Auxiliar Técnico em Manutenção Jr.</p>
+               <div class="contato-info">
+                 <a href="tel:+552227725530" class="contato-telefone">(22) 2772-5530</a>
+                 <a href="mailto:joaosantos@hpmacae.com.br" class="contato-email">joaosantos@hpmacae.com.br</a>
+               </div>
+             </div>
+          </div>
+        </div>
+
+        <!-- Departamento Almoxarifado -->
+          <div class="departamento-card">
+            <div class="departamento-header">
+              <h3 class="departamento-titulo" id="dept-almoxarifado">Almoxarifado</h3>
+            </div>
+          <div class="contatos-lista">
+            <div class="contato-item">
+              <h4 class="contato-nome">Marizete Canedo</h4>
+              <p class="contato-cargo" id="cargo-auxiliar">Auxiliar de Almoxarifado</p>
+              <div class="contato-info">
+                <a href="tel:+552227725530" class="contato-telefone">(22) 2772-5530</a>
+                <a href="mailto:marizetecanedo@hpmacae.com.br" class="contato-email">marizetecanedo@hpmacae.com.br</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Departamento Compras -->
+        <div class="departamento-card">
+          <div class="departamento-header">
+            <h3 class="departamento-titulo" id="dept-compras">Compras</h3>
+
+          </div>
+          <div class="contatos-lista">
+            <div class="contato-item">
+              <h4 class="contato-nome">Hevelin Azeredo</h4>
+              <p class="contato-cargo" id="cargo-assistente-compras">Assistente de Compras</p>
+              <div class="contato-info">
+                <a href="tel:+552199334257" class="contato-telefone">+55 21 99334-2579</a>
+                <a href="mailto:compras02@hpmacae.com.br" class="contato-email">compras02@hpmacae.com.br</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Departamento Financeiro -->
+        <div class="departamento-card">
+          <div class="departamento-header">
+            <h3 class="departamento-titulo" id="dept-financeiro">Financeiro</h3>
+
+          </div>
+          <div class="contatos-lista">
+            <div class="contato-item">
+              <h4 class="contato-nome">Hortencia Santos</h4>
+              <p class="contato-cargo" id="cargo-financeiro">Financeiro</p>
+              <div class="contato-info">
+                <a href="tel:+552299896864" class="contato-telefone">+55 22 99896-8643</a>
+                <a href="mailto:financeiro@hpmacae.com.br" class="contato-email">financeiro@hpmacae.com.br</a>
+                <a href="mailto:hortenciasantos@hpmacae.com.br" class="contato-email">hortenciasantos@hpmacae.com.br</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Departamento RH -->
+        <div class="departamento-card">
+          <div class="departamento-header">
+            <h3 class="departamento-titulo" id="dept-rh">RH</h3>
+
+          </div>
+          <div class="contatos-lista">
+            <div class="contato-item">
+              <h4 class="contato-nome">Fernanda Assis</h4>
+              <p class="contato-cargo" id="cargo-analista-rh">Analista de Recursos Humanos</p>
+              <div class="contato-info">
+                <a href="tel:+552299722537" class="contato-telefone">+55 22 99722-5376</a>
+                <a href="mailto:fernandaassis@hpmacae.com.br" class="contato-email">fernandaassis@hpmacae.com.br</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Departamento Diretoria -->
+        <div class="departamento-card">
+          <div class="departamento-header">
+            <h3 class="departamento-titulo" id="dept-diretoria">Diretoria</h3>
+
+          </div>
+          <div class="contatos-lista">
+            <div class="contato-item">
+              <h4 class="contato-nome">Gustavo Carvalho</h4>
+              <p class="contato-cargo" id="cargo-ceo">CEO</p>
+              <div class="contato-info">
+                <a href="mailto:gustavocarvalho@hpmacae.com.br" class="contato-email">gustavocarvalho@hpmacae.com.br</a>
+              </div>
+            </div>
+            <div class="contato-item">
+              <h4 class="contato-nome">Simone Carvalho</h4>
+              <p class="contato-cargo" id="cargo-diretora">Diretora</p>
+              <div class="contato-info">
+                <a href="mailto:simonecarvalho@hpmacae.com.br" class="contato-email">simonecarvalho@hpmacae.com.br</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção de Unidades - Aparece em todas as abas -->
+  <section class="unidades-section">
+    <div class="unidades-logo">
+      <img src="LOGO.png" alt="Logo H&P Maxiflow">
+    </div>
+    <div class="unidades-container">
+      <h2 class="unidades-titulo">Nossas Unidades</h2>
+      <p class="unidades-subtitulo">Conheça nossos endereços e entre em contato</p>
+      <h2 class="unidades-frase-destaque">Mais Controle Mais Qualidade <span class="parker">Mais Confiança.</span></h2>
+      
+      <div class="horario-funcionamento">
+        <p class="horario-texto">
+          <span class="horario-label">Horário:</span>
+          <span class="horario-dias">Segunda a Sexta:</span>
+          <span class="horario-horas">8h às 17:30h</span>
+        </p>
+      </div>
+      
+      <div class="unidades-cards">
+        <!-- Unidade Macaé - RJ -->
+        <div class="unidade-card">
+          <div class="unidade-content">
+            <div class="unidade-info">
+              <h3 class="unidade-titulo">MACAÉ - RJ</h3>
+              <p class="unidade-endereco">Av. Guadalajara, 1640 - Praia Campista</p>
+              <p class="unidade-cidade">Macaé - RJ, 27923-220</p>
+              <p class="unidade-telefone">Tel. (22) 2772-5530</p>
+              <a href="https://www.google.com/maps?q=Av.+Guadalajara,+1640+-+Praia+Campista,+Macaé+-+RJ,+27923-220" target="_blank" class="unidade-maps-link">
+                <span class="map-icon">📍</span>
+                <span>Ver no Mapa</span>
+              </a>
+            </div>
+            <div class="unidade-imagem">
+              <img src="FRENTE.png" alt="Unidade Macaé - RJ">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Sistema de navegação entre abas
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const targetTab = this.getAttribute('data-tab');
+
+          // Remove active class from all buttons and contents
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+
+          // Add active class to clicked button and corresponding content
+          this.classList.add('active');
+          document.getElementById(targetTab).classList.add('active');
+
+          // Trigger animations for the "Quem Somos" tab when it becomes active
+          if (targetTab === 'quem-somos') {
+            setTimeout(() => {
+              triggerAnimations();
+            }, 100);
+          }
+        });
+      });
+
+      // Função para ativar animações na aba "Quem Somos"
+      function triggerAnimations() {
+        // Carrossel suave
+        const track = document.querySelector('.logos-track');
+        if (track && !track.dataset.animated) {
+          track.dataset.animated = 'true';
+          const speed = 0.5;
+          const gap = 60;
+          let shift = 0;
+          
+          function animateCarousel() {
+            const firstLogo = track.children[0];
+            if (firstLogo) {
+              shift -= speed;
+              if (-shift >= firstLogo.offsetWidth + gap) {
+                track.appendChild(firstLogo);
+                shift += firstLogo.offsetWidth + gap;
+              }
+              track.style.transform = `translateX(${shift}px)`;
+            }
+            requestAnimationFrame(animateCarousel);
+          }
+          animateCarousel();
+        }
+
+        // Animações de entrada ao scroll
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if(entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.hero-content, .quem-somos-text h2, .quem-somos-text .paragrafo, .quem-somos-img, .clientes .subtitulo, .clientes .titulo, .portfolio .titulo-marcas, .portfolio .descricao, .portfolio-marcas, .contato-container, .unidades-section').forEach(el => {
+          observer.observe(el);
+        });
+
+        // Ativar animação do hero imediatamente
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) {
+          setTimeout(() => {
+            heroContent.classList.add('visible');
+          }, 300);
+        }
+
+
+      }
+
+      // Ativar animações se a aba "Quem Somos" estiver ativa inicialmente
+      if (document.getElementById('quem-somos').classList.contains('active')) {
+        triggerAnimations();
+      }
+
+      // Observer separado para a seção de unidades - ativo em todas as abas
+      const unidadesObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.2 });
+
+      // Observar a seção de unidades imediatamente
+      const unidadesSection = document.querySelector('.unidades-section');
+      if (unidadesSection) {
+        unidadesObserver.observe(unidadesSection);
+      }
+    });
+
+    // Sistema de Tradução
+    const translations = {
+      pt: {
+        // Navegação
+        'tab-home': 'HOME',
+        'tab-about': 'Quem Somos',
+        'tab-products': 'Produtos',
+        'tab-services': 'Serviços',
+        'tab-contacts': 'Contatos',
+        
+        // Aba HOME (Certificados)
+        'cert-title': 'Certificado Técnico - 471TC-4',
+        'cert-subtitle': 'Escolha uma das opções abaixo:',
+        'btn-certificate': 'Ver Certificado',
+        'btn-datasheet': 'Ficha Técnica Parker',
+        
+        // Hero
+        'hero-title': 'Conquistamos a confiança do mercado',
+        'hero-subtitle1': 'A H&P é referência no mercado de soluções hidráulicas, oferecendo qualidade, inovação e credibilidade.',
+        'hero-subtitle2': 'Com experiência consolidada, seguimos construindo confiança todos os dias.',
+        
+        // Faixa de transição
+        'transition-years': '26 anos focados em',
+        'transition-solutions': 'SOLUÇÕES',
+        'transition-and': 'e',
+        'transition-services': 'SERVIÇOS INOVADORES',
+        'transition-market': 'para o mercado de automação e controle de fluídos.',
+        
+        // Quem Somos
+        'about-title': 'Quem Somos',
+        'about-p1': 'A H&P Maxiflow está atuando no setor de serviços e material on e off-shore desde 1999. Com uma equipe formada por pessoas altamente capacitadas, incluindo um setor de engenharia, a excelência na avaliação, implementação e manutenção dos serviços que prestamos é garantida.',
+        'about-p2': 'Com destaque na linha de condução de fluidos, englobando mangueiras de alta, média e baixa pressão, inclusive termoplásticas, adaptadores de alta e baixa pressão em inox e aço carbono, também atuamos com serviços e comercialização de materiais hidráulicos, pneumáticos, instrumentações e filtros industriais. Sempre contando com o conhecimento avançado de nossa equipe, assim como a qualidade dos nossos produtos.',
+        'about-p3': 'Além da área de vendas de peças, também possuímos serviços de teste hidrostático em mangueiras, inclusive com registrador gráfico. Também efetuamos reparos em bombas hidráulicas e motores, reparo em cilindros hidráulicos e pneumáticos, montagem de unidades hidráulicas, sempre focados na eficiência do objetivo, embasados em projetos da nossa equipe de técnica e de engenheiros com mais de 25 anos de mercado.',
+        
+        // Missão
+        'mission-title': 'Missão',
+        'mission-p1': 'Oferecer produtos e serviços de excelência, garantindo mangueiras e conexões de alta durabilidade que aumentem a eficiência operacional e reduzam o risco de vazamentos. Nossa prioridade é a segurança e a confiabilidade para cada cliente.',
+        'mission-p2': 'Buscamos constantemente soluções inovadoras e sustentáveis, mantendo a integridade ambiental e fortalecendo nossa posição como referência no setor de óleo e gás.',
+        
+        // Futuro
+        'future-title': 'Futuro',
+        'future-p1': 'Olhando para o futuro, continuamos firmes em nosso compromisso de oferecer as melhores soluções para nossos clientes. Planejamos expandir nossa presença no mercado, fortalecendo parcerias estratégicas e explorando novas oportunidades de negócios.',
+        'future-p2': 'Investimos em pesquisa e desenvolvimento para aprimorar nossos produtos e serviços, garantindo que possamos atender às demandas em constante evolução do mercado.',
+        
+        // Valores
+        'values-title': 'Valores',
+        'values-p1': 'Integridade, inovação, compromisso com a qualidade, segurança e sustentabilidade. Estes são os princípios que guiam cada ação da H&P Maxiflow.',
+        'values-p2': 'Priorizamos a confiança e a transparência em todos os processos, garantindo excelência em produtos e serviços para nossos clientes.',
+        
+        // Clientes
+        'clients-subtitle': 'NOSSOS CLIENTES',
+        'clients-title1': 'Parceiros que confiam em',
+        'clients-title2': 'nossas soluções.',
+        
+        // Portfólio
+        'portfolio-title': 'Nossas marcas',
+        
+        // Contato
+        'contact-title': 'Fique Conectado',
+        'contact-subtitle': 'É uma grande alegria conversar com você',
+        'contact-email-text': 'Enviar mensagem',
+        'contact-phone-text': 'Ligar para o Telefone',
+        'contact-linkedin-text': 'Acesse o LinkedIn',
+        'contact-instagram-text': 'Acesse o Instagram',
+        'contact-whatsapp-text': 'Acesse o Whatsapp',
+        'portfolio-description1': 'Trabalhamos em parceria com essas marcas renomadas para oferecer',
+        'portfolio-description2': 'soluções de excelência e impulsionar a inovação no mercado.',
+        
+        // Contatos - Seção de Departamentos
+        'contacts-title': 'Contatos',
+        'contacts-subtitle': 'Entre em contato com o departamento desejado',
+        'dept-comercial': 'Comercial',
+        'dept-operacional': 'Operacional',
+        'dept-almoxarifado': 'Almoxarifado',
+        'dept-compras': 'Compras',
+        'dept-financeiro': 'Financeiro',
+        'dept-rh': 'RH',
+        'dept-diretoria': 'Diretoria',
+        'cargo-coordenadora-comercial': 'Coordenadora Comercial',
+        'cargo-vendedor-tecnico': 'Vendedor Técnico',
+        'cargo-vendedor-tecnico-2': 'Vendedor Técnico',
+        'cargo-vendedora': 'Vendedora',
+        'cargo-tecnico-instrumentacao': 'Técnico em Instrumentação',
+        'cargo-tecnico-manutencao': 'Técnico em Manutenção',
+        'cargo-assistente-tecnico': 'Assistente Técnico em Manutenção',
+        'cargo-auxiliar-tecnico': 'Auxiliar Técnico em Manutenção Jr.',
+        'cargo-auxiliar': 'Auxiliar de Almoxarifado',
+        'cargo-assistente-compras': 'Assistente de Compras',
+        'cargo-financeiro': 'Financeiro',
+        'cargo-analista-rh': 'Analista de Recursos Humanos',
+        'cargo-ceo': 'CEO',
+        'cargo-diretora': 'Diretora',
+        'cargo-diretor-geral': 'Diretor Geral',
+        'cargo-diretora-administrativa': 'Diretora Administrativa'
+      },
+      en: {
+        // Navigation
+        'tab-home': 'HOME',
+        'tab-about': 'About Us',
+        'tab-products': 'Products',
+        'tab-services': 'Services',
+        'tab-contacts': 'Contacts',
+        
+        // HOME Tab (Certificates)
+        'cert-title': 'Technical Certificate - 471TC-4',
+        'cert-subtitle': 'Choose one of the options below:',
+        'btn-certificate': 'View Certificate',
+        'btn-datasheet': 'Parker Technical Datasheet',
+        
+        // Hero
+        'hero-title': 'We have earned market trust',
+        'hero-subtitle1': 'H&P is a reference in the hydraulic solutions market, offering quality, innovation and credibility.',
+        'hero-subtitle2': 'With consolidated experience, we continue building trust every day.',
+        
+        // Transition banner
+        'transition-years': '26 years focused on',
+        'transition-solutions': 'SOLUTIONS',
+        'transition-and': 'and',
+        'transition-services': 'INNOVATIVE SERVICES',
+        'transition-market': 'for the automation and fluid control market.',
+        
+        // About Us
+        'about-title': 'About Us',
+        'about-p1': 'H&P Maxiflow has been operating in the on and off-shore services and materials sector since 1999. With a team formed by highly qualified people, including an engineering sector, excellence in the evaluation, implementation and maintenance of the services we provide is guaranteed.',
+        'about-p2': 'With emphasis on the fluid conduction line, encompassing high, medium and low pressure hoses, including thermoplastics, high and low pressure adapters in stainless steel and carbon steel, we also work with services and commercialization of hydraulic, pneumatic materials, instrumentation and industrial filters. Always counting on the advanced knowledge of our team, as well as the quality of our products.',
+        'about-p3': 'In addition to the parts sales area, we also have hydrostatic testing services for hoses, including graphic recorder. We also carry out repairs on hydraulic pumps and motors, repair on hydraulic and pneumatic cylinders, assembly of hydraulic units, always focused on the efficiency of the objective, based on projects from our technical team and engineers with more than 25 years of market experience.',
+        
+        // Mission
+        'mission-title': 'Mission',
+        'mission-p1': 'To offer excellent products and services, ensuring high durability hoses and connections that increase operational efficiency and reduce the risk of leaks. Our priority is safety and reliability for each customer.',
+        'mission-p2': 'We constantly seek innovative and sustainable solutions, maintaining environmental integrity and strengthening our position as a reference in the oil and gas sector.',
+        
+        // Future
+        'future-title': 'Future',
+        'future-p1': 'Looking to the future, we remain firm in our commitment to offer the best solutions for our customers. We plan to expand our market presence, strengthening strategic partnerships and exploring new business opportunities.',
+        'future-p2': 'We invest in research and development to improve our products and services, ensuring that we can meet the constantly evolving market demands.',
+        
+        // Values
+        'values-title': 'Values',
+        'values-p1': 'Integrity, innovation, commitment to quality, safety and sustainability. These are the principles that guide every action of H&P Maxiflow.',
+        'values-p2': 'We prioritize trust and transparency in all processes, ensuring excellence in products and services for our customers.',
+        
+        // Clients
+        'clients-subtitle': 'OUR CLIENTS',
+        'clients-title1': 'Partners who trust in',
+        'clients-title2': 'our solutions.',
+        
+        // Portfolio
+        'portfolio-title': 'Our brands',
+        'portfolio-description1': 'We work in partnership with these renowned brands to offer',
+        'portfolio-description2': 'excellence solutions and drive innovation in the market.',
+        
+        // Contact
+        'contact-title': 'Stay Connected',
+        'contact-subtitle': 'It\'s a great joy to chat with you',
+        'contact-email-text': 'Send message',
+        'contact-phone-text': 'Call the Phone',
+        'contact-linkedin-text': 'Access LinkedIn',
+        'contact-instagram-text': 'Access Instagram',
+        'contact-whatsapp-text': 'Access WhatsApp',
+        
+        // Contacts - Departments Section
+        'contacts-title': 'Contacts',
+        'contacts-subtitle': 'Contact the desired department',
+        'dept-comercial': 'Commercial',
+        'dept-operacional': 'Operational',
+        'dept-almoxarifado': 'Warehouse',
+        'dept-compras': 'Purchasing',
+        'dept-financeiro': 'Financial',
+        'dept-rh': 'HR',
+        'dept-diretoria': 'Management',
+        'cargo-coordenadora-comercial': 'Commercial Coordinator',
+        'cargo-vendedor-tecnico': 'Technical Sales Representative',
+        'cargo-vendedor-tecnico-2': 'Technical Sales Representative',
+        'cargo-vendedora': 'Sales Representative',
+        'cargo-tecnico-instrumentacao': 'Instrumentation Technician',
+        'cargo-tecnico-manutencao': 'Maintenance Technician',
+        'cargo-assistente-tecnico': 'Technical Maintenance Assistant',
+        'cargo-auxiliar-tecnico': 'Jr. Technical Maintenance Assistant',
+        'cargo-auxiliar': 'Warehouse Assistant',
+        'cargo-assistente-compras': 'Purchasing Assistant',
+        'cargo-financeiro': 'Financial',
+        'cargo-analista-rh': 'HR Analyst',
+        'cargo-ceo': 'CEO',
+        'cargo-diretora': 'Director',
+        'cargo-diretor-geral': 'General Director',
+        'cargo-diretora-administrativa': 'Administrative Director'
+      }
+    };
+
+    let currentLanguage = 'pt';
+
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      const translation = translations[lang];
+      
+      // Atualizar todos os elementos com IDs
+      Object.keys(translation).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.textContent = translation[id];
+        }
+      });
+      
+      // Salvar preferência no localStorage
+      localStorage.setItem('preferredLanguage', lang);
+    }
+
+    // Configurar eventos dos botões de idioma
+    document.addEventListener('DOMContentLoaded', function() {
+      const brFlag = document.querySelector('a[aria-label="Português"]');
+      const usFlag = document.querySelector('a[aria-label="English"]');
+      
+      if (brFlag) {
+        brFlag.addEventListener('click', function(e) {
+          e.preventDefault();
+          changeLanguage('pt');
+        });
+      }
+      
+      if (usFlag) {
+        usFlag.addEventListener('click', function(e) {
+          e.preventDefault();
+          changeLanguage('en');
+        });
+      }
+      
+      // Carregar idioma salvo ou usar português como padrão
+      const savedLanguage = localStorage.getItem('preferredLanguage') || 'pt';
+      if (savedLanguage !== 'pt') {
+        changeLanguage(savedLanguage);
+      }
+    });
+  </script>
+</body>
+</html>
